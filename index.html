@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Start Minecraft Server</title>
+    <style>
+        body { background-color: #23272a; color: white; font-family: 'Verdana', sans-serif; text-align: center; margin-top: 100px; }
+        button { 
+            background-color: #5865F2; color: white; border: none; padding: 20px 40px; 
+            font-size: 24px; border-radius: 10px; cursor: pointer; font-weight: bold;
+        }
+        button:hover { background-color: #4752c4; }
+        #status { margin-top: 20px; font-size: 18px; color: #99aab5; }
+    </style>
+</head>
+<body>
+    <h1>Minecraft Server Control</h1>
+    <p>Status: <span id="status">Waiting for command...</span></p>
+    <button onclick="startServer()">🚀 WAKE UP SERVER</button>
+
+    <script>
+        function startServer() {
+            document.getElementById("status").innerText = "Sending signal to Cloud Run...";
+            
+            // PASTE YOUR NEW CLOUD RUN URL BELOW (Keep the quotes!)
+            fetch("https://start-minecraft-845718081296.us-central1.run.app") 
+                .then(response => response.text())
+                .then(text => document.getElementById("status").innerText = text)
+                .catch(err => document.getElementById("status").innerText = "Error: " + err);
+        }
+    </script>
+</body>
+</html>
